@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title th:text="@{'게시판 - ' + ${post.title}}"></title>
+<!-- 부트스트랩 CSS -->
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      /* 기본 스타일링 */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding-top: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+      }
+
+      .form-group label {
+        font-weight: bold;
+        color: #495057;
+      }
+
+      .form-control {
+        border-radius: 8px;
+        box-shadow: none;
+        font-size: 16px;
+      }
+
+      .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+      }
+
+      .btn-primary {
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 50px;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      /* 버튼 오른쪽 정렬 */
+      .row {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <header th:insert="common/header.html"></header>
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title" th:text="@{${post.title} + ' - ' + ${post.author}}"></h5>
+          <p class="card-text">
+            <small
+              class="text-muted"
+              th:text="${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}"
+            ></small>
+          </p>
+          <p class="card-text" th:text="${post.content}"></p>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-auto mr-auto"></div>
+        <div class="col-auto">
+          <a class="btn btn-info" th:href="@{'/post/edit/' + ${post.id}}" role="button">수정</a>
+        </div>
+        <div class="col-auto">
+          <form id="delete-form" th:action="@{'/post/' + ${post.id}}" method="post">
+            <input type="hidden" name="_method" value="delete" />
+            <button id="delete-btn" type="submit" class="btn btn-danger">삭제</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

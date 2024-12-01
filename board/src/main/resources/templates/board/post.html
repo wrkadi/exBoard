@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>게시판 - 글쓰기</title>
+    <!-- 부트스트랩 CSS -->
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      /* 기본 스타일링 */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding-top: 20px;
+      }
+
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+      }
+
+      .form-group label {
+        font-weight: bold;
+        color: #495057;
+      }
+
+      .form-control {
+        border-radius: 8px;
+        box-shadow: none;
+        font-size: 16px;
+      }
+
+      .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+      }
+
+      .btn-primary {
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 50px;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      /* 버튼 오른쪽 정렬 */
+      .row {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 헤더 (외부 파일 포함) -->
+    <header th:insert="common/header.html"></header>
+
+    <div class="container">
+      <h1>글쓰기</h1>
+      <form action="/post" method="post">
+        <!-- 제목 입력 -->
+        <div class="form-group">
+          <label for="inputTitle">제목</label>
+          <input type="text" name="title" class="form-control" id="inputTitle" placeholder="제목을 입력하세요" required />
+        </div>
+
+        <!-- 작성자 입력 -->
+        <div class="form-group">
+          <label for="inputAuthor">작성자</label>
+          <input type="text" name="author" class="form-control" id="inputAuthor" placeholder="작성자를 입력하세요" required />
+        </div>
+
+        <!-- 내용 입력 -->
+        <div class="form-group">
+          <label for="inputContent">내용</label>
+          <textarea name="content" class="form-control" id="inputContent" rows="5" placeholder="내용을 입력하세요" required></textarea>
+        </div>
+
+        <!-- 제출 버튼 -->
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-primary" type="submit">글쓰기</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- 부트스트랩 JS 파일 -->
+    <script src="/webjars/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
